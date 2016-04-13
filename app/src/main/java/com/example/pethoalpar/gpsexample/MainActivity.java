@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
         }
         Location location = gpsTool.getLocation();
         Double longitude = location.getLongitude();
-        Double latittude = location.getLatitude();
+        Double latitude = location.getLatitude();
         Double altitude = location.getAltitude();
         StringBuilder sb = new StringBuilder();
         sb.append("Longitude:").append(longitude).append("\n");
-        sb.append("Latitude:").append(latittude).append("\n");
+        sb.append("Latitude:").append(latitude).append("\n");
         sb.append("Altitude:").append(altitude);
         textView.setText(sb.toString());
     }
