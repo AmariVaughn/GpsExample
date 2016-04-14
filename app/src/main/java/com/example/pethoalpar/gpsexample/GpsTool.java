@@ -23,25 +23,41 @@ public class GpsTool {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                //Location change.
+                onGpsLocationChanged(location);
+                location.reset();
             }
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-
+                onGpsStatusChanged(provider, status, extras);
             }
 
             @Override
             public void onProviderEnabled(String provider) {
-
+                onGpsProviderEnabled(provider);
             }
 
             @Override
             public void onProviderDisabled(String provider) {
-
+                onGpsProviderDisabled(provider);
             }
         };
-        locationManager.requestLocationUpdates(locationProvider,0,0, locationListener);
+        startGpsUpdate();
+    }
+
+    public void onGpsLocationChanged(Location location) {
+        //Location change.
+    }
+
+    public void onGpsStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    public void onGpsProviderEnabled(String provider) {
+
+    }
+
+    public void onGpsProviderDisabled(String provider) {
 
     }
 
@@ -50,7 +66,7 @@ public class GpsTool {
     }
 
     public void startGpsUpdate(){
-        locationManager.requestLocationUpdates(locationProvider,0 ,0, locationListener);
+        locationManager.requestLocationUpdates(locationProvider, 1000, 0, locationListener);
     }
 
     public void stopGpsUpdate(){

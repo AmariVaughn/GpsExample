@@ -16,10 +16,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView = (TextView) this.findViewById(R.id.textView);
-        if(gpsTool == null){
-            gpsTool = new GpsTool(this);
+        if (gpsTool == null) {
+            gpsTool = new GpsTool(this) {
+                @Override
+                public void onGpsLocationChanged(Location location) {
+                    super.onGpsLocationChanged(location);
+                    refreshLocation(location);
+                }
+            };
         }
-        Location location = gpsTool.getLocation();
+    }
+
+    private void refreshLocation(Location location) {
         Double longitude = location.getLongitude();
         Double latitude = location.getLatitude();
         Double altitude = location.getAltitude();
